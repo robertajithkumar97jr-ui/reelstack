@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submissions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap wide">
+    <header>
+      <h1>Submissions</h1>
+      <p id="count">Loading...</p>
+    </header>
+    <input id="search" type="search" placeholder="Search by name, ID or course">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Student</th><th>ID</th><th>Course</th><th>File</th><th>Size</th><th>Uploaded</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

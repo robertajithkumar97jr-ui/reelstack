@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit your files</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Submit your files</h1>
+      <p>Add your details, attach your files, and send. You can upload several files at once.</p>
+    </header>
+
+    <form id="upload-form" novalidate>
+      <div class="row">
+        <label>Full name
+          <input name="student_name" type="text" autocomplete="name" required maxlength="80">
+        </label>
+        <label>Student ID
+          <input name="student_id" type="text" required maxlength="30" placeholder="e.g. CS2024/017">
+        </label>
+      </div>
+      <label>Course or assignment <span class="opt">(optional)</span>
+        <input name="course" type="text" maxlength="80">
+      </label>
+
+      <div id="drop" class="drop" tabindex="0" role="button" aria-label="Choose files">
+        <input id="files" name="files" type="file" multiple hidden
+               accept="{% for e in extensions %}.{{ e }}{{ ',' if not loop.last }}{% endfor %}">
+        <strong>Drop files here or click to choose</strong>
+        <span>Up to {{ max_mb }} MB in total &middot; {{ extensions|join(', ') }}</span>
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+
+      <div id="progress" class="progress" hidden><div></div></div>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <button id="send" type="submit">Send files</button>
+    </form>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
